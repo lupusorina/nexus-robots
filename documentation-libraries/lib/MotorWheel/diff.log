@@ -1,0 +1,66 @@
+0a1
+> #include<WProgram.h>
+2,19c3,4
+< /*
+<   motorwheel library version 1.1,compatible with maple.
+< */
+< 
+< 
+< /*for maple*/
+< #if defined(BOARD_maple) || defined(BOARD_maple_native) || defined(BOARD_maple_mini)
+< 	#include "wirish.h" 
+< 	#include "./../PID_Beta6/PID_Beta6.h"
+< 	#include "ext_interrupts.h"
+< 
+< /*for arduino*/	
+< #else
+< 	#include<WProgram.h>
+< 	#include<PID_Beta6.h>
+< 	#include<PinChangeInt.h>
+< 	
+< #endif
+---
+> #include<PID_Beta6.h>
+> #include<PinChangeInt.h>
+38,40c23
+< /*for maple*/
+< #if defined(BOARD_maple) || defined(BOARD_maple_native) || defined(BOARD_maple_mini)
+< 	#define  MAX_PWM  3599
+---
+> #define  MAX_PWM 200  //255
+42,46d24
+< /*for arduino*/	
+< #else
+< 	#define  MAX_PWM  128
+< 	
+< #endif
+62,63c40,41
+< #define  KC           2.2
+< #define  TAUI         1
+---
+> #define  KC           0.26 //0.17987		//0.066366//0.07637//0.07887
+> #define  TAUI         0.02 //0.12451		//0.022505//0.02251//0.02451
+121,124c99,102
+< 	unsigned int runPWM(unsigned int PWM,bool dir,bool saveDir=true);
+< 	unsigned int getPWM() const;
+< 	unsigned int advancePWM(unsigned int PWM);
+< 	unsigned int backoffPWM(unsigned int PWM);
+---
+> 	unsigned char runPWM(unsigned char PWM,bool dir,bool saveDir=true);
+> 	unsigned char getPWM() const;
+> 	unsigned char advancePWM(unsigned char PWM);
+> 	unsigned char backoffPWM(unsigned char PWM);
+152,155c130,133
+< 	unsigned char	pinPWM;
+< 	unsigned char	pinDir;
+< 	unsigned char	pinIRQ;
+< 	unsigned char	pinIRQB;
+---
+> 	unsigned char pinPWM;
+> 	unsigned char pinDir;
+> 	unsigned char pinIRQ;
+> 	unsigned char pinIRQB;
+159c137
+< 	unsigned int speedPWM;	// current PWM
+---
+> 	unsigned char speedPWM;	// current PWM

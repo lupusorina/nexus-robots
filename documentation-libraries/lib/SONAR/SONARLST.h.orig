@@ -1,0 +1,34 @@
+
+#ifndef SONARLST_H
+#define SONARLST_H
+#endif
+
+#include<SONAR.h>
+
+struct SONARptr {
+	SONAR* prev;
+	SONAR* curr;
+	SONAR* next;
+};
+
+class SONARLST {
+public:
+	SONARLST(unsigned char pinCtrl=13);
+	unsigned char add(unsigned char addr);
+	unsigned char del(unsigned char addr);
+	unsigned char trigger(unsigned char addr);
+	unsigned int  getDist(unsigned char addr);
+	unsigned int  getTemp(unsigned char addr);
+	unsigned char update();
+	unsigned char count() const;
+
+	SONARptr* 
+
+private:
+	unsigned char _pinCtrl;
+	SONARptr _lst;
+
+	unsigned char goToBegin();
+	unsigned char goToEnd();
+};
+
